@@ -16,13 +16,13 @@ public class AdocaoController {
         this.adocaoService = adocaoService;
     }
 
-    // ✅ Endpoint para listar todas as adoções
+    //Endpoint para listar todas as adoções
     @GetMapping
     public ResponseEntity<List<Adocao>> listarTodos() {
         return ResponseEntity.ok(adocaoService.listarTodos());
     }
 
-    // ✅ Endpoint para salvar uma adoção
+    //Endpoint para salvar uma adoção
     @PostMapping
     public ResponseEntity<Adocao> salvar(@RequestBody Adocao adocao) {
         return ResponseEntity.ok(adocaoService.salvar(adocao));

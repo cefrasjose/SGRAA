@@ -16,13 +16,13 @@ public class DoacaoController {
         this.doacaoService = doacaoService;
     }
 
-    // ✅ Endpoint para listar todas as doações
+    //Endpoint para listar todas as doações
     @GetMapping
     public ResponseEntity<List<Doacao>> listarTodos() {
         return ResponseEntity.ok(doacaoService.listarTodos());
     }
 
-    // ✅ Endpoint para salvar uma nova doação
+    //Endpoint para salvar uma nova doação
     @PostMapping
     public ResponseEntity<Doacao> salvar(@RequestBody Doacao doacao) {
         return ResponseEntity.ok(doacaoService.salvar(doacao));

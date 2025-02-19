@@ -11,5 +11,5 @@ public class Role {
     private Long id;
 
     @Column(unique = true)
-    private String nome; // Exemplo: "ADMIN", "VOLUNTARIO"
+    private String nome; //Exemplo: "ADMIN", "VOLUNTARIO"
 }

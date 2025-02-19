@@ -15,7 +15,7 @@ public class EstoqueController {
         this.estoqueService = estoqueService;
     }
 
-    // ✅ Endpoint para consumir item do estoque
+    //Endpoint para consumir item do estoque
     @PostMapping("/consumir")
     public ResponseEntity<String> consumirItem(@RequestBody Map<String, Object> request) {
         String item = (String) request.get("item");

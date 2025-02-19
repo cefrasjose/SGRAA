@@ -14,12 +14,12 @@ public class DoacaoService {
         this.doacaoRepository = doacaoRepository;
     }
 
-    // ✅ Método para listar todas as doações
+    //Método para listar todas as doações
     public List<Doacao> listarTodos() {
         return doacaoRepository.findAll();
     }
 
-    // ✅ Método para salvar uma nova doação
+    //Método para salvar uma nova doação
     public Doacao salvar(Doacao doacao) {
         return doacaoRepository.save(doacao);
     }
