@@ -1,27 +1,30 @@
 package com.sgraa.controller;
 
-import com.sgraa.model.Estoque;
 import com.sgraa.service.EstoqueService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/estoque")
 public class EstoqueController {
-    private final EstoqueService service;
+    private final EstoqueService estoqueService;
 
-    public EstoqueController(EstoqueService service) {
-        this.service = service;
+    public EstoqueController(EstoqueService estoqueService) {
+        this.estoqueService = estoqueService;
     }
 
-    @GetMapping
-    public List<Estoque> listar() {
-        return service.listarTodos();
-    }
+    // ✅ Endpoint para consumir item do estoque
+    @PostMapping("/consumir")
+    public ResponseEntity<String> consumirItem(@RequestBody Map<String, Object> request) {
+        String item = (String) request.get("item");
+        int quantidade = (int) request.get("quantidade");
 
-    @PostMapping
-    public Estoque criar(@RequestBody Estoque estoque) {
-        return service.salvar(estoque);
+        boolean sucesso = estoqueService.consumirItem(item, quantidade);
+        if (!sucesso) {
+            return ResponseEntity.badRequest().body("Estoque insuficiente para o item: " + item);
+        }
+        return ResponseEntity.ok("Item consumido com sucesso!");
     }
 }

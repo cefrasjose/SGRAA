@@ -5,12 +5,11 @@ import com.sgraa.model.Usuario;
 import com.sgraa.repository.RoleRepository;
 import com.sgraa.service.UsuarioService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -25,18 +24,17 @@ public class AuthController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    //Endpoint para registrar um novo usuário
+    //Endpoint de Registro
     @PostMapping("/register")
-    public ResponseEntity<Usuario> registrar(@RequestBody Usuario usuario) {
-        // Verifica se o e-mail já está cadastrado
-        if (usuarioService.buscarPorEmail(usuario.getEmail()).isPresent()) {
-            return ResponseEntity.badRequest().body(null);
+    public ResponseEntity<?> registrar(@RequestBody Usuario usuario) {
+        Optional<Usuario> usuarioExistente = usuarioService.buscarPorEmail(usuario.getEmail());
+        if (usuarioExistente.isPresent()) {
+            return ResponseEntity.badRequest().body("Erro: Email já cadastrado.");
         }
 
-        // Criptografa a senha antes de salvar
         usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
 
-        // Define o papel padrão como "VOLUNTARIO" se não for especificado
+        //Define papel padrão como VOLUNTARIO se não for informado
         Role role = roleRepository.findByNome("VOLUNTARIO");
         if (role == null) {
             role = new Role();
@@ -45,18 +43,7 @@ public class AuthController {
         }
         usuario.setRoles(Collections.singleton(role));
 
-        // Salva o usuário no banco
         Usuario novoUsuario = usuarioService.salvarUsuario(usuario);
         return ResponseEntity.ok(novoUsuario);
-    }
-
-    //Endpoint para verificar se o usuário está autenticado (sessão ativa)
-    @GetMapping("/me")
-    public ResponseEntity<Usuario> getUsuarioLogado() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String email = authentication.getName();
-        return usuarioService.buscarPorEmail(email)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.badRequest().body(null));
     }
 }

@@ -2,6 +2,8 @@ package com.sgraa.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -11,16 +13,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // Desabilita CSRF para facilitar chamadas via Postman
+                .csrf(csrf -> csrf.disable()) // Desabilita CSRF para evitar bloqueios em POST no Postman
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**", "/login").permitAll() // Permite login e registro sem autenticação
-                        .requestMatchers("/api/animais/**").hasRole("ADMIN") // Somente ADMIN pode acessar
-                        .requestMatchers("/api/voluntarios/**").hasAnyRole("ADMIN", "VOLUNTARIO") // ADMIN e VOLUNTARIO podem acessar
+                        .requestMatchers("/api/auth/**").permitAll() // ✅ Permitir login e registro sem autenticação
+                        .requestMatchers("/api/animais/**").hasRole("ADMIN")
+                        .requestMatchers("/api/voluntarios/**").hasAnyRole("ADMIN", "VOLUNTARIO")
                         .anyRequest().authenticated()
-                )
-                .formLogin(form -> form
-                        .loginProcessingUrl("/login") // Define a URL de login
-                        .permitAll()
                 )
                 .logout(logout -> logout
                         .logoutUrl("/api/auth/logout")
@@ -28,5 +26,10 @@ public class SecurityConfig {
                 );
 
         return http.build();
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+        return authConfig.getAuthenticationManager();
     }
 }

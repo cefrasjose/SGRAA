@@ -11,5 +11,15 @@ public class Estoque {
     private Long id;
 
     private String item;
-    private Integer quantidade;
+    private int quantidade;
+
+    //Adicionando um construtor com parâmetros
+    public Estoque(String item, int quantidade) {
+        this.item = item;
+        this.quantidade = quantidade;
+    }
+
+    //Construtor padrão sem argumentos (necessário para JPA)
+    public Estoque() {
+    }
 }

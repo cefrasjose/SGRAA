@@ -7,17 +7,19 @@ import java.util.List;
 
 @Service
 public class AdocaoService {
-    private final AdocaoRepository repository;
+    private final AdocaoRepository adocaoRepository;
 
-    public AdocaoService(AdocaoRepository repository) {
-        this.repository = repository;
+    public AdocaoService(AdocaoRepository adocaoRepository) {
+        this.adocaoRepository = adocaoRepository;
     }
 
+    //Método para listar todas as adoções
     public List<Adocao> listarTodos() {
-        return repository.findAll();
+        return adocaoRepository.findAll();
     }
 
+    //Método para salvar uma adoção
     public Adocao salvar(Adocao adocao) {
-        return repository.save(adocao);
+        return adocaoRepository.save(adocao);
     }
 }
