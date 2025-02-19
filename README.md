@@ -9,7 +9,7 @@ O sistema utiliza **Spring Boot** para o backend, com **autenticação baseada e
 
 ## ⚙️ Tecnologias Utilizadas  
 
-- **Java 23**  
+- **Java 17**  
 - **Spring Boot 3.x**  
 - **Spring Security (Autenticação baseada em sessão)**  
 - **Spring Data JPA (Hibernate)**  
@@ -112,22 +112,21 @@ Os usuários podem ter os seguintes papéis:
 - ✅ Criar **tratamento de erros e logs**.  
 - 🔜 Desenvolver **testes automatizados**.  
 
-💡 Contribuição
+---
 
-Se deseja contribuir com o projeto, siga estes passos:
-
-Faça um fork do repositório.
-
-Crie uma branch com a nova funcionalidade:
-
-git checkout -b minha-feature
-
-Faça o commit das alterações:
-
-git commit -m "Minha nova feature"
-
-Envie para o repositório remoto:
-
-git push origin minha-feature
-
-Crie um Pull Request.
+## 💡 Contribuição  
+Se deseja contribuir com o projeto, siga estes passos:  
+1. Faça um **fork** do repositório.  
+2. Crie uma **branch** com a nova funcionalidade:  
+   ```bash
+   git checkout -b minha-feature
+   ```
+3. Faça o **commit** das alterações:  
+   ```bash
+   git commit -m "Minha nova feature"
+   ```
+4. Envie para o repositório remoto:  
+   ```bash
+   git push origin minha-feature
+   ```
+5. Crie um **Pull Request**.  
