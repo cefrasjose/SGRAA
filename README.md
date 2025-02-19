@@ -9,7 +9,7 @@ O sistema utiliza **Spring Boot** para o backend, com **autenticação baseada e
 
 ## ⚙️ Tecnologias Utilizadas  
 
-- **Java 17**  
+- **Java 23**  
 - **Spring Boot 3.x**  
 - **Spring Security (Autenticação baseada em sessão)**  
 - **Spring Data JPA (Hibernate)**  
