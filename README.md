@@ -107,9 +107,9 @@ Os usuários podem ter os seguintes papéis:
 
 ---
 
-## 🛠 Próximos Passos    
-- ✅ Criar **tratamento de erros e logs**.  
-- ✅ Desenvolver **testes automatizados**.  
+## 🛠 Próximos Passos     
+- ✅ Desenvolver **testes automatizados**.
+- 🔜 Corrigir **erros apresentados nos testes**.    
 
 ---
 
