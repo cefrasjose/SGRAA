@@ -111,3 +111,22 @@ Os usuários podem ter os seguintes papéis:
 - ✅ Implementar melhorias nas **regras de negócio**.  
 - ✅ Criar **tratamento de erros e logs**.  
 - 🔜 Desenvolver **testes automatizados**.  
+
+---
+
+## 💡 Contribuição  
+Se deseja contribuir com o projeto, siga estes passos:  
+1. Faça um **fork** do repositório.  
+2. Crie uma **branch** com a nova funcionalidade:  
+   ```bash
+   git checkout -b minha-feature
+   ```
+3. Faça o **commit** das alterações:  
+   ```bash
+   git commit -m "Minha nova feature"
+   ```
+4. Envie para o repositório remoto:  
+   ```bash
+   git push origin minha-feature
+   ```
+5. Crie um **Pull Request**.  
