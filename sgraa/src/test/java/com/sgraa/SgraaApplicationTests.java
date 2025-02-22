@@ -9,5 +9,4 @@ class SgraaApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }
